@@ -1,24 +1,13 @@
-//
-//  ContentView.swift
-//  LocalChat
-//
-//  Created by Admin on 9/21/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @ObservedObject private var userManager = UserManager.shared
 
-#Preview {
-    ContentView()
+    var body: some View {
+        if userManager.user != nil {
+            ChatroomListView()
+        } else {
+            SignupView()
+        }
+    }
 }
